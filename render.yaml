@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: library-management
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
