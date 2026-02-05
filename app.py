@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 FILE_NAME = "books.xlsx"
 
+# Create Excel file if it does not exist
 if not os.path.exists(FILE_NAME):
     df = pd.DataFrame(columns=["Book ID", "Book Name", "Author", "Department"])
     df.to_excel(FILE_NAME, index=False)
@@ -27,5 +28,7 @@ def insert():
 
     return "Book inserted successfully!"
 
+# ✅ IMPORTANT CHANGE FOR RENDER
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
